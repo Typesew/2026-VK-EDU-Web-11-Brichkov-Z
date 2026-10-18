@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskMe — основная верстка</title>
+    <link rel="icon" type="image/svg+xml" href="static/img/favicon.svg">
+    <link rel="stylesheet" href="static/bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ================= Шапка ================= -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-icon">?</span>
+                <span class="brand-text">AskMe</span>
+            </a>
+
+            <form class="header-search" action="#" method="get" role="search">
+                <input type="search" name="q" placeholder="Найди свой вопрос…" aria-label="Поиск по вопросам">
+                <button type="submit">Найти</button>
+            </form>
+
+            <div class="header-actions">
+                <a class="btn btn-ask" href="ask.html">Задать вопрос</a>
+                <!-- Юзерблок для неавторизованного пользователя -->
+                <div class="user-block">
+                    <a class="user-link" href="login.html">Войти</a>
+                    <a class="btn btn-register" href="signup.html">Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= Основной контент ================= -->
+    <main class="container main-layout">
+        <div class="row g-4">
+            <!-- Центральная колонка -->
+            <div class="col-12 col-lg-9">
+                <div class="content-heading">
+                    <h1>Основная верстка (layout)</h1>
+                </div>
+
+                <div class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-dr-nlohman.svg" alt="Аватар Dr. nlohman">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            <a href="question.html">Это базовая верстка страницы</a>
+                        </h3>
+                        <p class="q-card__text">
+                            В этом файле собрана общая структура любой страницы сайта:
+                            шапка (логотип, поиск, кнопка «Задать вопрос», юзерблок),
+                            центральная колонка с контентом, правая колонка с блоками
+                            «Популярные теги» и «Лучшие пользователи», а также подвал,
+                            прижатый к низу окна. Остальные страницы (index, question,
+                            ask, login, signup) повторяют этот каркас.
+                        </p>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">layout</a>
+                            <a href="#" class="tag">bootstrap</a>
+                            <span class="dot">·</span>
+                            <span>5 ответов</span>
+                            <span class="dot">·</span>
+                            <span>только что</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget" data-base="42">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">42</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правая колонка (sidebar) -->
+            <aside class="col-12 col-lg-3">
+                <section class="side-block">
+                    <h2>Популярные теги</h2>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag tag--big">python</a>
+                        <a href="#" class="tag">django</a>
+                        <a href="#" class="tag tag--big">html</a>
+                        <a href="#" class="tag">css</a>
+                        <a href="#" class="tag tag--big">javascript</a>
+                        <a href="#" class="tag">bootstrap</a>
+                        <a href="#" class="tag">git</a>
+                        <a href="#" class="tag">postgresql</a>
+                        <a href="#" class="tag tag--big">wsl</a>
+                        <a href="#" class="tag">nginx</a>
+                        <a href="#" class="tag">flexbox</a>
+                        <a href="#" class="tag">шаблоны</a>
+                    </div>
+                </section>
+
+                <section class="side-block">
+                    <h2>Лучшие пользователи</h2>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-dr-nlohman.svg" alt="Аватар Dr. nlohman">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Dr. nlohman</span>
+                            <span class="best-member__rep">рейтинг 12 480</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ip.svg" alt="Аватар Иван Петров">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Иван Петров</span>
+                            <span class="best-member__rep">рейтинг 9 215</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ms.svg" alt="Аватар Мария Соколова">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Мария Соколова</span>
+                            <span class="best-member__rep">рейтинг 7 890</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ak.svg" alt="Аватар Алексей Ким">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Алексей Ким</span>
+                            <span class="best-member__rep">рейтинг 6 542</span>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <!-- ================= Подвал ================= -->
+    <footer class="site-footer mt-auto">
+        <div class="container d-flex justify-content-between flex-wrap gap-2">
+            <span>© 2026 AskMe — сервис «Вопросы и ответы»</span>
+            <span>Учебный проект · <a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap 5.3</a></span>
+        </div>
+    </footer>
+
+    <script src="static/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>
