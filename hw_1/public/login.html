@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход — AskMe</title>
+    <link rel="icon" type="image/svg+xml" href="static/img/favicon.svg">
+    <link rel="stylesheet" href="static/bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ================= Шапка ================= -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-icon">?</span>
+                <span class="brand-text">AskMe</span>
+            </a>
+
+            <form class="header-search" action="#" method="get" role="search">
+                <input type="search" name="q" placeholder="Найди свой вопрос…" aria-label="Поиск по вопросам">
+                <button type="submit">Найти</button>
+            </form>
+
+            <div class="header-actions">
+                <a class="btn btn-ask" href="ask.html">Задать вопрос</a>
+                <!-- Юзерблок для неавторизованного пользователя -->
+                <div class="user-block">
+                    <a class="user-link" href="login.html">Войти</a>
+                    <a class="btn btn-register" href="signup.html">Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= Основной контент ================= -->
+    <main class="container main-layout">
+        <div class="row g-4">
+            <!-- Узкая центрированная колонка: форма входа -->
+            <div class="col-12">
+                <div class="content-heading content-heading--center">
+                    <h1>Вход</h1>
+                </div>
+
+                <section class="form-card form-card--narrow">
+                    <!-- Ошибка формы (пример) -->
+                    <div class="alert alert-danger form-alert" role="alert">
+                        Вы ввели неправильный email или пароль. Попробуйте ещё раз.
+                    </div>
+
+                    <form action="#" method="post" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="login-email">Email</label>
+                            <input type="email" class="form-control" id="login-email" name="email"
+                                   placeholder="you@example.com" autocomplete="email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="login-password">Пароль</label>
+                            <input type="password" class="form-control" id="login-password" name="password"
+                                   placeholder="••••••••" autocomplete="current-password" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Войти</button>
+                    </form>
+
+                    <p class="form-switch">
+                        Нет аккаунта? <a href="signup.html">Зарегистрируйтесь</a>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= Подвал ================= -->
+    <footer class="site-footer mt-auto">
+        <div class="container d-flex justify-content-between flex-wrap gap-2">
+            <span>© 2026 AskMe — сервис «Вопросы и ответы»</span>
+            <span>Учебный проект · <a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap 5.3</a></span>
+        </div>
+    </footer>
+
+    <script src="static/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>
