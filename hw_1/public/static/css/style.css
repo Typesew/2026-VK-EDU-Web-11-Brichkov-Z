@@ -639,6 +639,82 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--brand-blue-dark);
 }
 
+/* ---------- Юзерблок (авторизованный) ---------- */
+
+.user-block--auth .user-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.user-block--auth .user-link:hover {
+    color: #cfd5db !important;
+}
+
+.avatar--xs {
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+}
+
+/* ---------- Узкая форма (auth-страницы) ---------- */
+
+.content-heading--center {
+    justify-content: center;
+    text-align: center;
+}
+
+.form-card--narrow {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-switch {
+    margin: 16px 0 0;
+    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* ---------- Ошибки форм ---------- */
+
+.form-alert {
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+.form-control.is-invalid {
+    border-color: var(--red);
+}
+
+.form-control.is-invalid:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
+}
+
+.invalid-feedback {
+    color: var(--red);
+    font-size: 13px;
+}
+
+/* ---------- Блок аватарки в профиле ---------- */
+
+.profile-avatar-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.avatar--xl {
+    width: 96px;
+    height: 96px;
+    border-radius: 8px;
+}
+
 /* ---------- Подвал ---------- */
 
 .site-footer {
@@ -705,6 +781,12 @@ h1, h2, h3, h4, h5, h6 {
     .vote-widget .vote-count {
         min-width: 24px;
         text-align: center;
+    }
+
+    .profile-avatar-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
     }
 
     .content-heading h1 {

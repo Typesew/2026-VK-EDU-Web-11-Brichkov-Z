@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки профиля — AskMe</title>
+    <link rel="icon" type="image/svg+xml" href="static/img/favicon.svg">
+    <link rel="stylesheet" href="static/bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ================= Шапка ================= -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-icon">?</span>
+                <span class="brand-text">AskMe</span>
+            </a>
+
+            <form class="header-search" action="#" method="get" role="search">
+                <input type="search" name="q" placeholder="Найди свой вопрос…" aria-label="Поиск по вопросам">
+                <button type="submit">Найти</button>
+            </form>
+
+            <div class="header-actions">
+                <a class="btn btn-ask" href="ask.html">Задать вопрос</a>
+                <!-- Юзерблок для авторизованного пользователя -->
+                <div class="user-block user-block--auth">
+                    <a class="user-link" href="profile.html">
+                        <img class="avatar avatar--xs" src="static/img/avatar-ip.svg" alt="Аватар Иван Петров">
+                        <span>Иван Петров</span>
+                    </a>
+                    <a class="btn btn-register" href="login.html">Выйти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= Основной контент ================= -->
+    <main class="container main-layout">
+        <div class="row g-4">
+            <!-- Центральная колонка: настройки профиля -->
+            <div class="col-12 col-lg-9">
+                <div class="content-heading">
+                    <h1>Настройки профиля</h1>
+                </div>
+
+                <section class="form-card">
+                    <form action="#" method="post" enctype="multipart/form-data" novalidate>
+                        <!-- Блок с аватаркой -->
+                        <div class="profile-avatar-row">
+                            <img class="avatar avatar--xl" src="static/img/avatar-ip.svg" alt="Текущий аватар">
+                            <div class="flex-grow-1">
+                                <label class="form-label" for="profile-avatar">Сменить аватар</label>
+                                <input type="file" class="form-control" id="profile-avatar" name="avatar"
+                                       accept="image/*">
+                                <div class="form-text">PNG, JPG или SVG. Рекомендуемый размер — 256×256 пикселей.</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="profile-nick">Никнейм</label>
+                            <input type="text" class="form-control" id="profile-nick" name="nickname"
+                                   value="Иван Петров" minlength="3" maxlength="30" required>
+                            <div class="form-text">От 3 до 30 символов: буквы, цифры, дефис и подчёркивание.</div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label" for="profile-email">Email</label>
+                            <input type="email" class="form-control is-invalid" id="profile-email" name="email"
+                                   value="ivan@example" autocomplete="email" required>
+                            <!-- Ошибка поля (пример) -->
+                            <div class="invalid-feedback">Вы ввели невалидный email.</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                    </form>
+                </section>
+            </div>
+
+            <!-- Правая колонка (sidebar) -->
+            <aside class="col-12 col-lg-3">
+                <section class="side-block">
+                    <h2>Популярные теги</h2>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag tag--big">python</a>
+                        <a href="#" class="tag">django</a>
+                        <a href="#" class="tag tag--big">html</a>
+                        <a href="#" class="tag">css</a>
+                        <a href="#" class="tag tag--big">javascript</a>
+                        <a href="#" class="tag">bootstrap</a>
+                        <a href="#" class="tag">git</a>
+                        <a href="#" class="tag">postgresql</a>
+                        <a href="#" class="tag tag--big">wsl</a>
+                        <a href="#" class="tag">nginx</a>
+                        <a href="#" class="tag">flexbox</a>
+                        <a href="#" class="tag">шаблоны</a>
+                    </div>
+                </section>
+
+                <section class="side-block">
+                    <h2>Лучшие пользователи</h2>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-dr-nlohman.svg" alt="Аватар Dr. nlohman">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Dr. nlohman</span>
+                            <span class="best-member__rep">рейтинг 12 480</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ip.svg" alt="Аватар Иван Петров">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Иван Петров</span>
+                            <span class="best-member__rep">рейтинг 9 215</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ms.svg" alt="Аватар Мария Соколова">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Мария Соколова</span>
+                            <span class="best-member__rep">рейтинг 7 890</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ak.svg" alt="Аватар Алексей Ким">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Алексей Ким</span>
+                            <span class="best-member__rep">рейтинг 6 542</span>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <!-- ================= Подвал ================= -->
+    <footer class="site-footer mt-auto">
+        <div class="container d-flex justify-content-between flex-wrap gap-2">
+            <span>© 2026 AskMe — сервис «Вопросы и ответы»</span>
+            <span>Учебный проект · <a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap 5.3</a></span>
+        </div>
+    </footer>
+
+    <script src="static/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>
