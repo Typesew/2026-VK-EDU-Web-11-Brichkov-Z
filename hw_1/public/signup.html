@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация — AskMe</title>
+    <link rel="icon" type="image/svg+xml" href="static/img/favicon.svg">
+    <link rel="stylesheet" href="static/bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ================= Шапка ================= -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-icon">?</span>
+                <span class="brand-text">AskMe</span>
+            </a>
+
+            <form class="header-search" action="#" method="get" role="search">
+                <input type="search" name="q" placeholder="Найди свой вопрос…" aria-label="Поиск по вопросам">
+                <button type="submit">Найти</button>
+            </form>
+
+            <div class="header-actions">
+                <a class="btn btn-ask" href="ask.html">Задать вопрос</a>
+                <!-- Юзерблок для неавторизованного пользователя -->
+                <div class="user-block">
+                    <a class="user-link" href="login.html">Войти</a>
+                    <a class="btn btn-register" href="signup.html">Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= Основной контент ================= -->
+    <main class="container main-layout">
+        <div class="row g-4">
+            <!-- Узкая центрированная колонка: форма регистрации -->
+            <div class="col-12">
+                <div class="content-heading content-heading--center">
+                    <h1>Регистрация</h1>
+                </div>
+
+                <section class="form-card form-card--narrow">
+                    <form action="#" method="post" enctype="multipart/form-data" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="signup-email">Email</label>
+                            <input type="email" class="form-control is-invalid" id="signup-email" name="email"
+                                   value="user@" placeholder="you@example.com" autocomplete="email" required>
+                            <!-- Ошибка поля (пример) -->
+                            <div class="invalid-feedback">Вы ввели невалидный email.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="signup-nick">Никнейм</label>
+                            <input type="text" class="form-control" id="signup-nick" name="nickname"
+                                   minlength="3" maxlength="30" placeholder="Ваш ник" autocomplete="username" required>
+                            <div class="form-text">От 3 до 30 символов: буквы, цифры, дефис и подчёркивание.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="signup-avatar">Аватар</label>
+                            <input type="file" class="form-control" id="signup-avatar" name="avatar"
+                                   accept="image/*">
+                            <div class="form-text">PNG, JPG или SVG. Рекомендуемый размер — 256×256 пикселей.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="signup-password">Пароль</label>
+                            <input type="password" class="form-control" id="signup-password" name="password"
+                                   minlength="8" placeholder="Минимум 8 символов" autocomplete="new-password" required>
+                            <div class="form-text">Не используйте простые пароли. Можно добавить цифры и символы.</div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label" for="signup-password2">Повторите пароль</label>
+                            <input type="password" class="form-control" id="signup-password2" name="password2"
+                                   minlength="8" placeholder="Ещё раз тот же пароль" autocomplete="new-password" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+                    </form>
+
+                    <p class="form-switch">
+                        Уже есть аккаунт? <a href="login.html">Войдите</a>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= Подвал ================= -->
+    <footer class="site-footer mt-auto">
+        <div class="container d-flex justify-content-between flex-wrap gap-2">
+            <span>© 2026 AskMe — сервис «Вопросы и ответы»</span>
+            <span>Учебный проект · <a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap 5.3</a></span>
+        </div>
+    </footer>
+
+    <script src="static/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>

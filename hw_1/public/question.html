@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как в Django вывести связанные объекты в шаблоне? — AskMe</title>
+    <link rel="icon" type="image/svg+xml" href="static/img/favicon.svg">
+    <link rel="stylesheet" href="static/bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ================= Шапка ================= -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-icon">?</span>
+                <span class="brand-text">AskMe</span>
+            </a>
+
+            <form class="header-search" action="#" method="get" role="search">
+                <input type="search" name="q" placeholder="Найди свой вопрос…" aria-label="Поиск по вопросам">
+                <button type="submit">Найти</button>
+            </form>
+
+            <div class="header-actions">
+                <a class="btn btn-ask" href="ask.html">Задать вопрос</a>
+                <!-- Юзерблок для неавторизованного пользователя -->
+                <div class="user-block">
+                    <a class="user-link" href="login.html">Войти</a>
+                    <a class="btn btn-register" href="signup.html">Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= Основной контент ================= -->
+    <main class="container main-layout">
+        <div class="row g-4">
+            <!-- Центральная колонка: вопрос + ответы -->
+            <div class="col-12 col-lg-9">
+                <div class="content-heading">
+                    <h1>Вопрос</h1>
+                </div>
+
+                <!-- Карточка вопроса -->
+                <article class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-ip.svg" alt="Аватар Иван Петров">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            Как в Django вывести связанные объекты в шаблоне?
+                        </h3>
+                        <div class="q-card__text">
+                            <p>
+                                Есть две модели: <code>Question</code> (вопрос) и
+                                <code>Answer</code> (ответ). Ответ связан с вопросом через
+                                <code>ForeignKey</code>. В шаблоне <code>question.html</code>
+                                я вывожу вопрос и хочу показать список всех ответов на него.
+                                Сейчас делаю примерно так:
+                            </p>
+<pre><code>{% for question in questions %}
+    &lt;h2&gt;{{ question.title }}&lt;/h2&gt;
+    {% for answer in question.answer_set.all %}
+        &lt;p&gt;{{ answer.text }}&lt;/p&gt;
+    {% endfor %}
+{% endfor %}</code></pre>
+                            <p>
+                                Проблема в том, что для каждого вопроса выполняется отдельный
+                                запрос к базе (проблема N+1), и при большом количестве
+                                вопросов страница грузится очень долго. Как вывести связанные
+                                объекты одним запросом?
+                            </p>
+                        </div>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">django</a>
+                            <a href="#" class="tag">python</a>
+                            <a href="#" class="tag">шаблоны</a>
+                            <span class="dot">·</span>
+                            <span>5 ответов</span>
+                            <span class="dot">·</span>
+                            <span>задан 2 часа назад</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget" data-base="128">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">128</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Ответы -->
+                <div class="content-heading">
+                    <h2>5 ответов</h2>
+                </div>
+
+                <!-- Ответ 1 (правильный) -->
+                <article class="answer-card is-correct" data-group="q1">
+                    <div class="vote-widget" data-base="45">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">45</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                    <div class="answer-card__body">
+                        <div class="answer-card__text">
+                            <p>
+                                Это классическая проблема N+1. Она решается с помощью
+                                <code>select_related()</code> (для связи «к одному») и
+                                <code>prefetch_related()</code> (для связи «ко многим»).
+                                В вашем случае подойдёт <code>prefetch_related</code>:
+                            </p>
+<pre><code>from django.shortcuts import render
+from .models import Question
+
+def index(request):
+    questions = Question.objects.prefetch_related('answer_set').all()
+    return render(request, 'index.html', {'questions': questions})</code></pre>
+                            <p>
+                                После этого Django выполнит ровно два запроса: один для
+                                вопросов и один для всех связанных ответов.
+                            </p>
+                        </div>
+                        <div class="answer-card__footer">
+                            <span>отвечен 2 часа назад</span>
+                            <label class="correct-toggle">
+                                <input type="checkbox" class="correct-input" checked>
+                                <span class="correct-badge"><span class="check">✓</span> Правильный ответ</span>
+                            </label>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Ответ 2 -->
+                <article class="answer-card" data-group="q1">
+                    <div class="vote-widget" data-base="12">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">12</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                    <div class="answer-card__body">
+                        <div class="answer-card__text">
+                            <p>
+                                Можно просто перебирать <code>question.answer_set.all</code>
+                                прямо в шаблоне. Для учебного проекта этого достаточно,
+                                но на больших объёмах данных будут лишние запросы к базе.
+                            </p>
+                        </div>
+                        <div class="answer-card__footer">
+                            <span>отвечен 1 час назад</span>
+                            <label class="correct-toggle">
+                                <input type="checkbox" class="correct-input">
+                                <span class="correct-badge"><span class="check">✓</span> Правильный ответ</span>
+                            </label>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Ответ 3 -->
+                <article class="answer-card" data-group="q1">
+                    <div class="vote-widget" data-base="8">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">8</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                    <div class="answer-card__body">
+                        <div class="answer-card__text">
+                            <p>
+                                Обратите внимание на параметр <code>related_name</code> в
+                                <code>ForeignKey</code> — с ним обращение к ответам станет
+                                читаемее: <code>question.answers.all()</code> вместо
+                                <code>question.answer_set.all()</code>.
+                            </p>
+                        </div>
+                        <div class="answer-card__footer">
+                            <span>отвечен 30 минут назад</span>
+                            <label class="correct-toggle">
+                                <input type="checkbox" class="correct-input">
+                                <span class="correct-badge"><span class="check">✓</span> Правильный ответ</span>
+                            </label>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Пагинация ответов -->
+                <nav class="pagination" aria-label="Навигация по ответам">
+                    <a class="page-link disabled" href="#" aria-disabled="true">«</a>
+                    <a class="page-link active" href="#">1</a>
+                    <a class="page-link" href="#">2</a>
+                    <a class="page-link" href="#">3</a>
+                    <a class="page-link" href="#">»</a>
+                </nav>
+
+                <!-- Форма ответа -->
+                <section class="form-card">
+                    <h2>Ваш ответ</h2>
+                    <form action="#" method="post">
+                        <div class="mb-3">
+                            <label class="form-label" for="answer-text">Текст ответа</label>
+                            <textarea class="form-control" id="answer-text" rows="5"
+                                      maxlength="5000" placeholder="Опишите решение…" required></textarea>
+                            <div class="form-text">Максимум 5000 символов. Можно использовать разметку для оформления кода.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить ответ</button>
+                    </form>
+                </section>
+            </div>
+
+            <!-- Правая колонка (sidebar) -->
+            <aside class="col-12 col-lg-3">
+                <section class="side-block">
+                    <h2>Популярные теги</h2>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag tag--big">python</a>
+                        <a href="#" class="tag">django</a>
+                        <a href="#" class="tag tag--big">html</a>
+                        <a href="#" class="tag">css</a>
+                        <a href="#" class="tag tag--big">javascript</a>
+                        <a href="#" class="tag">bootstrap</a>
+                        <a href="#" class="tag">git</a>
+                        <a href="#" class="tag">postgresql</a>
+                        <a href="#" class="tag tag--big">wsl</a>
+                        <a href="#" class="tag">nginx</a>
+                        <a href="#" class="tag">flexbox</a>
+                        <a href="#" class="tag">шаблоны</a>
+                    </div>
+                </section>
+
+                <section class="side-block">
+                    <h2>Лучшие пользователи</h2>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-dr-nlohman.svg" alt="Аватар Dr. nlohman">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Dr. nlohman</span>
+                            <span class="best-member__rep">рейтинг 12 480</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ip.svg" alt="Аватар Иван Петров">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Иван Петров</span>
+                            <span class="best-member__rep">рейтинг 9 215</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ms.svg" alt="Аватар Мария Соколова">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Мария Соколова</span>
+                            <span class="best-member__rep">рейтинг 7 890</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ak.svg" alt="Аватар Алексей Ким">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Алексей Ким</span>
+                            <span class="best-member__rep">рейтинг 6 542</span>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <!-- ================= Подвал ================= -->
+    <footer class="site-footer mt-auto">
+        <div class="container d-flex justify-content-between flex-wrap gap-2">
+            <span>© 2026 AskMe — сервис «Вопросы и ответы»</span>
+            <span>Учебный проект · <a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap 5.3</a></span>
+        </div>
+    </footer>
+
+    <script src="static/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>

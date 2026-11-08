@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskMe — вопросы и ответы</title>
+    <link rel="icon" type="image/svg+xml" href="static/img/favicon.svg">
+    <link rel="stylesheet" href="static/bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ================= Шапка ================= -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-icon">?</span>
+                <span class="brand-text">AskMe</span>
+            </a>
+
+            <form class="header-search" action="#" method="get" role="search">
+                <input type="search" name="q" placeholder="Найди свой вопрос…" aria-label="Поиск по вопросам">
+                <button type="submit">Найти</button>
+            </form>
+
+            <div class="header-actions">
+                <a class="btn btn-ask" href="ask.html">Задать вопрос</a>
+                <!-- Юзерблок для неавторизованного пользователя -->
+                <div class="user-block">
+                    <a class="user-link" href="login.html">Войти</a>
+                    <a class="btn btn-register" href="signup.html">Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= Основной контент ================= -->
+    <main class="container main-layout">
+        <div class="row g-4">
+            <!-- Центральная колонка: список вопросов -->
+            <div class="col-12 col-lg-9">
+                <div class="content-heading">
+                    <h1>Все вопросы</h1>
+                </div>
+
+                <!-- Вопрос 1 -->
+                <article class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-ip.svg" alt="Аватар Иван Петров">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            <a href="question.html">Как в Django вывести связанные объекты в шаблоне?</a>
+                        </h3>
+                        <p class="q-card__text">
+                            Есть модели Question и Answer со связью ForeignKey. Как в шаблоне
+                            пройтись по всем ответам вопроса и вывести их одним запросом,
+                            чтобы не получить проблему N+1?
+                        </p>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">django</a>
+                            <a href="#" class="tag">python</a>
+                            <a href="#" class="tag">шаблоны</a>
+                            <span class="dot">·</span>
+                            <span>5 ответов</span>
+                            <span class="dot">·</span>
+                            <span>2 часа назад</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget" data-base="128">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">128</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Вопрос 2 (лайк нажат) -->
+                <article class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-ak.svg" alt="Аватар Алексей Ким">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            <a href="question.html">Почему Bootstrap не подключается через CDN?</a>
+                        </h3>
+                        <p class="q-card__text">
+                            Подключил bootstrap.min.css по ссылке, но сетка не работает.
+                            Браузер пишет, что стили загрузились, а классы row/col не применяются.
+                            В чём может быть дело?
+                        </p>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">html</a>
+                            <a href="#" class="tag">css</a>
+                            <a href="#" class="tag">bootstrap</a>
+                            <span class="dot">·</span>
+                            <span>3 ответа</span>
+                            <span class="dot">·</span>
+                            <span>5 часов назад</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget is-liked" data-base="45">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">46</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Вопрос 3 -->
+                <article class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-ms.svg" alt="Аватар Мария Соколова">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            <a href="question.html">Как прижать footer к низу страницы?</a>
+                        </h3>
+                        <p class="q-card__text">
+                            Сделал страницу с небольшим контентом, но footer «висит» посередине
+                            экрана. Как сделать так, чтобы подвал всегда был прижат к низу viewport?
+                        </p>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">css</a>
+                            <a href="#" class="tag">верстка</a>
+                            <a href="#" class="tag">flexbox</a>
+                            <span class="dot">·</span>
+                            <span>2 ответа</span>
+                            <span class="dot">·</span>
+                            <span>вчера</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget" data-base="31">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">31</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Вопрос 4 -->
+                <article class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-ol.svg" alt="Аватар Ольга Л.">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            <a href="question.html">В чём разница между class и id в CSS?</a>
+                        </h3>
+                        <p class="q-card__text">
+                            Объясните, когда использовать class, а когда id. Влияет ли это
+                            на специфичность селекторов и на обращение из JavaScript?
+                        </p>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">css</a>
+                            <a href="#" class="tag">html</a>
+                            <span class="dot">·</span>
+                            <span>4 ответа</span>
+                            <span class="dot">·</span>
+                            <span>вчера</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget" data-base="19">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">19</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Вопрос 5 (дизлайк нажат) -->
+                <article class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-ev.svg" alt="Аватар Елена В.">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            <a href="question.html">Как настроить виртуальное окружение в WSL?</a>
+                        </h3>
+                        <p class="q-card__text">
+                            Установил Ubuntu в WSL2, хочу создать venv для Python-проекта,
+                            но команда python3 -m venv выдаёт ошибку. Как правильно
+                            поставить окружение?
+                        </p>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">wsl</a>
+                            <a href="#" class="tag">python</a>
+                            <span class="dot">·</span>
+                            <span>1 ответ</span>
+                            <span class="dot">·</span>
+                            <span>2 дня назад</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget is-disliked" data-base="13">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">12</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Вопрос 6 -->
+                <article class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-ak.svg" alt="Аватар Алексей Ким">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            <a href="question.html">Что такое Flexbox и с чего начать?</a>
+                        </h3>
+                        <p class="q-card__text">
+                            Пытаюсь разобраться с флексбоксами, но путаюсь в свойствах контейнера
+                            и элементов. Какие главные свойства нужно выучить в первую очередь?
+                        </p>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">css</a>
+                            <a href="#" class="tag">flexbox</a>
+                            <span class="dot">·</span>
+                            <span>6 ответов</span>
+                            <span class="dot">·</span>
+                            <span>3 дня назад</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget" data-base="87">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">87</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Вопрос 7 -->
+                <article class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-ip.svg" alt="Аватар Иван Петров">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            <a href="question.html">Как подключить PostgreSQL к Django?</a>
+                        </h3>
+                        <p class="q-card__text">
+                            Меняю SQLite на PostgreSQL. Что прописать в settings.py и какой
+                            пакет нужен для подключения?
+                        </p>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">django</a>
+                            <a href="#" class="tag">postgresql</a>
+                            <a href="#" class="tag">бд</a>
+                            <span class="dot">·</span>
+                            <span>2 ответа</span>
+                            <span class="dot">·</span>
+                            <span>4 дня назад</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget" data-base="53">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">53</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Вопрос 8 -->
+                <article class="q-card">
+                    <img class="avatar avatar--lg" src="static/img/avatar-ms.svg" alt="Аватар Мария Соколова">
+                    <div class="q-card__body">
+                        <h3 class="q-card__title">
+                            <a href="question.html">Ошибка ModuleNotFoundError: No module named 'django'</a>
+                        </h3>
+                        <p class="q-card__text">
+                            Создал проект, но при запуске manage.py получаю ошибку, что django
+                            не найден. Хотя я его устанавливал через pip. Что проверить?
+                        </p>
+                        <div class="q-card__meta">
+                            <a href="#" class="tag">python</a>
+                            <a href="#" class="tag">django</a>
+                            <a href="#" class="tag">ошибки</a>
+                            <span class="dot">·</span>
+                            <span>3 ответа</span>
+                            <span class="dot">·</span>
+                            <span>5 дней назад</span>
+                        </div>
+                    </div>
+                    <div class="vote-widget" data-base="24">
+                        <button type="button" class="vote-btn vote-like" aria-label="Нравится">
+                            <img src="static/img/like.png" alt="">
+                        </button>
+                        <span class="vote-count">24</span>
+                        <button type="button" class="vote-btn vote-dislike" aria-label="Не нравится">
+                            <img src="static/img/dislike.png" alt="">
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Пагинация -->
+                <nav class="pagination" aria-label="Навигация по вопросам">
+                    <a class="page-link disabled" href="#" aria-disabled="true">«</a>
+                    <a class="page-link active" href="#">1</a>
+                    <a class="page-link" href="#">2</a>
+                    <a class="page-link" href="#">3</a>
+                    <a class="page-link" href="#">4</a>
+                    <a class="page-link" href="#">5</a>
+                    <a class="page-link" href="#">»</a>
+                </nav>
+            </div>
+
+            <!-- Правая колонка (sidebar) -->
+            <aside class="col-12 col-lg-3">
+                <section class="side-block">
+                    <h2>Популярные теги</h2>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag tag--big">python</a>
+                        <a href="#" class="tag">django</a>
+                        <a href="#" class="tag tag--big">html</a>
+                        <a href="#" class="tag">css</a>
+                        <a href="#" class="tag tag--big">javascript</a>
+                        <a href="#" class="tag">bootstrap</a>
+                        <a href="#" class="tag">git</a>
+                        <a href="#" class="tag">postgresql</a>
+                        <a href="#" class="tag tag--big">wsl</a>
+                        <a href="#" class="tag">nginx</a>
+                        <a href="#" class="tag">flexbox</a>
+                        <a href="#" class="tag">шаблоны</a>
+                    </div>
+                </section>
+
+                <section class="side-block">
+                    <h2>Лучшие пользователи</h2>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-dr-nlohman.svg" alt="Аватар Dr. nlohman">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Dr. nlohman</span>
+                            <span class="best-member__rep">рейтинг 12 480</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ip.svg" alt="Аватар Иван Петров">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Иван Петров</span>
+                            <span class="best-member__rep">рейтинг 9 215</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ms.svg" alt="Аватар Мария Соколова">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Мария Соколова</span>
+                            <span class="best-member__rep">рейтинг 7 890</span>
+                        </div>
+                    </div>
+                    <div class="best-member">
+                        <img class="avatar" src="static/img/avatar-ak.svg" alt="Аватар Алексей Ким">
+                        <div class="best-member__info">
+                            <span class="best-member__name">Алексей Ким</span>
+                            <span class="best-member__rep">рейтинг 6 542</span>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <!-- ================= Подвал ================= -->
+    <footer class="site-footer mt-auto">
+        <div class="container d-flex justify-content-between flex-wrap gap-2">
+            <span>© 2026 AskMe — сервис «Вопросы и ответы»</span>
+            <span>Учебный проект · <a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap 5.3</a></span>
+        </div>
+    </footer>
+
+    <script src="static/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>
